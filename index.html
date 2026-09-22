@@ -3,98 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Head Shed | Bespoke Hairdressing Stanley</title>
+    <title>The Head Shed | Luxury Hairdressing Stanley</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .glass-panel {
-            background: rgba(24, 18, 23, 0.8);
+            background: rgba(24, 18, 23, 0.85);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(244, 63, 94, 0.2);
         }
         .glass-active {
-            background: linear-gradient(135deg, rgba(159, 18, 57, 0.35) 0%, rgba(24, 18, 23, 0.9) 100%);
-            border: 1px solid rgba(244, 63, 94, 0.6);
-            box-shadow: 0 0 25px rgba(244, 63, 94, 0.2);
+            background: linear-gradient(135deg, rgba(159, 18, 57, 0.4) 0%, rgba(24, 18, 23, 0.95) 100%);
+            border: 1px solid rgba(244, 63, 94, 0.65);
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.25);
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased min-h-screen pb-12">
-    <header class="sticky top-0 z-50 glass-panel border-b border-rose-950 px-4 py-3.5">
+<body class="bg-slate-950 text-slate-100 antialiased min-h-screen pb-16">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-rose-950/80 px-4 py-3.5">
         <div class="max-w-md mx-auto flex justify-between items-center">
-            <div>
-                <h1 class="text-sm font-black tracking-wider text-rose-100">THE HEAD SHED</h1>
-                <p class="text-[10px] text-rose-400 font-bold uppercase tracking-widest">110 Front St, Stanley</p>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-600 to-pink-800 flex items-center justify-center border border-rose-400/30">
+                    <i class="fa-solid fa-scissors text-white text-sm"></i>
+                </div>
+                <div>
+                    <h1 class="text-xs font-black tracking-wider text-rose-100 uppercase">THE HEAD SHED</h1>
+                    <p class="text-[10px] text-rose-400 font-bold uppercase tracking-widest">110 Front St, Stanley</p>
+                </div>
             </div>
-            <a href="tel:01207290383" class="bg-rose-500/20 text-rose-300 text-xs px-3.5 py-2 rounded-xl font-bold border border-rose-500/40">
-                <i class="fa-solid fa-phone"></i> Call
+            <a href="tel:01207290383" class="glass-panel hover:bg-slate-900 text-rose-300 text-xs px-3.5 py-2 rounded-xl font-semibold border border-rose-500/30 transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-phone"></i> <span>Call</span>
             </a>
         </div>
     </header>
 
     <main class="max-w-md mx-auto px-4 mt-5 space-y-5">
+
+        <!-- Hero Section -->
         <div class="glass-panel p-6 rounded-3xl text-center space-y-3 relative overflow-hidden">
-            <span class="bg-rose-500/10 text-rose-400 border border-rose-500/30 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                <i class="fa-solid fa-scissors"></i> Front Street Hair Studio
+            <span class="bg-rose-500/10 text-rose-400 border border-rose-500/30 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-block">
+                <i class="fa-solid fa-gem"></i> Bespoke Salon Experience
             </span>
             <h2 class="text-2xl font-black text-rose-100 uppercase tracking-tight">Style & Confidence,<br><span class="text-rose-400">Tailored To You.</span></h2>
-            <p class="text-xs text-slate-400">Select your styling service below to request an instant slot & deposit estimate.</p>
+            <p class="text-xs text-slate-400 leading-relaxed">
+                Select your service from our menu to request an instant appointment slot and calculate your booking deposit.
+            </p>
         </div>
 
-        <div class="space-y-3">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Select Service</span>
-            
-            <div onclick="selectSvc('cut', 32)" id="svc-cut" class="glass-active cursor-pointer p-4 rounded-2xl flex justify-between items-center">
+        <!-- Menu Tabs -->
+        <div class="flex gap-2 bg-slate-900/80 p-1.5 rounded-2xl border border-slate-800 text-xs font-bold text-slate-400">
+            <button onclick="switchTab('cuts')" id="tab-cuts" class="flex-1 py-2 rounded-xl bg-rose-600 text-white transition-all">Cuts & Style</button>
+            <button onclick="switchTab('colour')" id="tab-colour" class="flex-1 py-2 rounded-xl hover:text-white transition-all">Colouring</button>
+            <button onclick="switchTab('treatments')" id="tab-treatments" class="flex-1 py-2 rounded-xl hover:text-white transition-all">Treatments</button>
+        </div>
+
+        <!-- Category 1: Cuts & Style -->
+        <div id="cat-cuts" class="space-y-2.5">
+            <div onclick="selectService('Cut & Blow Dry', 38)" class="svc-card glass-active cursor-pointer p-4 rounded-2xl flex justify-between items-center transition-all">
                 <div>
                     <h3 class="font-bold text-white text-sm">Cut & Blow Dry</h3>
-                    <p class="text-xs text-slate-400">Precision cut, wash, head massage & professional finish.</p>
+                    <p class="text-xs text-slate-400">Wash, precision cut, head massage & blow-out finish.</p>
                 </div>
-                <span class="text-rose-400 font-extrabold text-lg">£32</span>
+                <span class="price-tag text-rose-400 font-extrabold text-lg">£38</span>
             </div>
 
-            <div onclick="selectSvc('balayage', 75)" id="svc-balayage" class="glass-panel cursor-pointer p-4 rounded-2xl flex justify-between items-center">
+            <div onclick="selectService('Wet / Dry Cut', 28)" class="svc-card glass-panel cursor-pointer p-4 rounded-2xl flex justify-between items-center transition-all">
                 <div>
-                    <h3 class="font-bold text-white text-sm">Bespoke Colour / Balayage</h3>
-                    <p class="text-xs text-slate-400">Custom shade blending, toner & full styling treatment.</p>
+                    <h3 class="font-bold text-white text-sm">Wet / Dry Cut</h3>
+                    <p class="text-xs text-slate-400">Quick trim or reshape without full wash/styling.</p>
                 </div>
-                <span class="text-white font-extrabold text-lg">£75</span>
+                <span class="price-tag text-white font-extrabold text-lg">£28</span>
+            </div>
+
+            <div onclick="selectService('Blow Dry & Style', 25)" class="svc-card glass-panel cursor-pointer p-4 rounded-2xl flex justify-between items-center transition-all">
+                <div>
+                    <h3 class="font-bold text-white text-sm">Blow Dry & Styling</h3>
+                    <p class="text-xs text-slate-400">Professional wash and glam styling/curling.</p>
+                </div>
+                <span class="price-tag text-white font-extrabold text-lg">£25</span>
+            </div>
+
+            <div onclick="selectService('Gents Precision Cut', 20)" class="svc-card glass-panel cursor-pointer p-4 rounded-2xl flex justify-between items-center transition-all">
+                <div>
+                    <h3 class="font-bold text-white text-sm">Gents Cut & Finish</h3>
+                    <p class="text-xs text-slate-400">Clippers, scissor work & product styling.</p>
+                </div>
+                <span class="price-tag text-white font-extrabold text-lg">£20</span>
             </div>
         </div>
 
+        <!-- Category 2: Colouring (Hidden by default) -->
+        <div id="cat-colour" class="space-y-2.5 hidden">
+            <div onclick="selectService('Full Head Foils / Highlights', 75)" class="svc-card glass-panel cursor-pointer p-4 rounded-2xl flex justify-between items-center transition-all">
+                <div>
+                    <h3 class="font-bold text-white text-sm">Full Head Highlights</h3>
+                    <p class="text-xs text-slate-400">Multi-tonal highlights across full head (patch test required).</p>
+                </div>
+                <span class="price-tag text-white font-extrabold text-lg">£75</span>
+            </div>
+
+            <div onclick="selectService('Half Head Foils', 55)" class="svc-card glass-panel cursor-pointer p-4 rounded-2xl flex justify-between items-center transition-all">
+                <div>
+                    <h3 class="font-bold text-white text-sm">Half Head Highlights</h3>
+                    <p class="text-xs text-slate-400">Top and side foil placement for natural dimension.</p>
+                </div>
+                <span class="price-tag text-white font-extrabold text-lg">£55</span>
+            </div>
+
+            <div onclick="selectService('Root Regrowth Tint', 42)" class="svc-card glass-panel cursor-pointer p-4 rounded-2xl flex justify-between items-center transition-all">
+                <div>
+                    <h3 class="font-bold text-white text-sm">Root Regrowth Tint</h3>
+                    <p class="text-xs text-slate-400">Root touch-up coverage and grey blending.</p>
+                </div>
+                <span class="price-tag text-white font-extrabold text-lg">£42</span>
+            </div>
+
+            <div onclick="selectService('Balayage & Toner Package', 85)" class="svc-card glass-panel cursor-pointer p-4 rounded-2xl flex justify-between items-center transition-all">
+                <div>
+                    <h3 class="font-bold text-white text-sm">Balayage & Toner</h3>
+                    <p class="text-xs text-slate-400">Hand-painted blended gradient with custom gloss toner.</p>
+                </div>
+                <span class="price-tag text-white font-extrabold text-lg">£85</span>
+            </div>
+        </div>
+
+        <!-- Category 3: Treatments (Hidden by default) -->
+        <div id="cat-treatments" class="space-y-2.5 hidden">
+            <div onclick="selectService('Deep Conditioning Mask', 18)" class="svc-card glass-panel cursor-pointer p-4 rounded-2xl flex justify-between items-center transition-all">
+                <div>
+                    <h3 class="font-bold text-white text-sm">Intensive Hair Mask</h3>
+                    <p class="text-xs text-slate-400">Deep moisture repair treatment added to any cut or blow dry.</p>
+                </div>
+                <span class="price-tag text-white font-extrabold text-lg">£18</span>
+            </div>
+
+            <div onclick="selectService('Metal Detox / Gloss Treatment', 25)" class="svc-card glass-panel cursor-pointer p-4 rounded-2xl flex justify-between items-center transition-all">
+                <div>
+                    <h3 class="font-bold text-white text-sm">Bond Repair & Shine Gloss</h3>
+                    <p class="text-xs text-slate-400">Protects hair structure & adds brilliant reflective shine.</p>
+                </div>
+                <span class="price-tag text-white font-extrabold text-lg">£25</span>
+            </div>
+        </div>
+
+        <!-- Selected Service & Deposit Calculator -->
         <div class="glass-panel p-5 rounded-3xl space-y-4 border-rose-500/30">
+            <div class="pb-3 border-b border-slate-800">
+                <span class="text-[10px] uppercase font-bold tracking-wider text-rose-400 block mb-1">Selected Service</span>
+                <p id="selected-title" class="text-sm font-bold text-white">Cut & Blow Dry</p>
+            </div>
+
             <div class="flex justify-between items-center pb-3 border-b border-slate-800">
                 <div>
-                    <p class="text-[11px] text-slate-400">Estimated Total</p>
-                    <p id="total" class="text-2xl font-black text-white">£32.00</p>
+                    <p class="text-[11px] text-slate-400">Service Price</p>
+                    <p id="total" class="text-2xl font-black text-white">£38.00</p>
                 </div>
                 <div class="text-right">
-                    <p class="text-[11px] text-rose-400 font-bold">Deposit Due (25%)</p>
-                    <p id="deposit" class="text-2xl font-black text-rose-400">£8.00</p>
+                    <p class="text-[11px] text-rose-400 font-bold">Deposit Required (25%)</p>
+                    <p id="deposit" class="text-2xl font-black text-rose-400">£9.50</p>
                 </div>
             </div>
-            <form onsubmit="event.preventDefault(); alert('Demo request submitted!');" class="space-y-2.5">
-                <input type="text" placeholder="Your Full Name" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-rose-500">
-                <input type="tel" placeholder="Mobile Number" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-rose-500">
-                <button type="submit" class="w-full bg-gradient-to-r from-rose-600 to-pink-600 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-rose-600/30">
-                    Reserve Appointment Slot
+
+            <form onsubmit="event.preventDefault(); alert('Demo Request Received! On a live site, this locks the slot and requests the £' + document.getElementById('deposit').innerText + ' deposit.');" class="space-y-2.5">
+                <div>
+                    <label class="block text-[10px] font-semibold text-slate-400 mb-1">Your Full Name</label>
+                    <input type="text" placeholder="e.g. Sarah Jenkins" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-rose-500 transition-all">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-semibold text-slate-400 mb-1">Mobile / WhatsApp Number</label>
+                    <input type="tel" placeholder="e.g. 07123 456789" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-rose-500 transition-all">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-rose-600 to-pink-600 hover:opacity-95 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-rose-600/30 transition-all mt-2">
+                    Request Appointment Slot
                 </button>
             </form>
         </div>
+
     </main>
 
     <script>
-        let currentPrice = 32;
-        function selectSvc(id, price) {
-            currentPrice = price;
-            document.querySelectorAll('[id^="svc-"]').forEach(el => {
-                el.className = 'glass-panel cursor-pointer p-4 rounded-2xl flex justify-between items-center';
-                el.querySelector('span').className = 'text-white font-extrabold text-lg';
+        let currentService = 'Cut & Blow Dry';
+        let currentPrice = 38;
+
+        function switchTab(tab) {
+            // Hide all categories
+            document.getElementById('cat-cuts').classList.add('hidden');
+            document.getElementById('cat-colour').classList.add('hidden');
+            document.getElementById('cat-treatments').classList.add('hidden');
+
+            // Reset tab styles
+            document.querySelectorAll('[id^="tab-"]').forEach(btn => {
+                btn.className = 'flex-1 py-2 rounded-xl hover:text-white transition-all';
             });
-            const active = document.getElementById('svc-' + id);
-            active.className = 'glass-active cursor-pointer p-4 rounded-2xl flex justify-between items-center';
-            active.querySelector('span').className = 'text-rose-400 font-extrabold text-lg';
+
+            // Activate selected tab & category
+            document.getElementById('cat-' + tab).classList.remove('hidden');
+            document.getElementById('tab-' + tab).className = 'flex-1 py-2 rounded-xl bg-rose-600 text-white transition-all';
+        }
+
+        function selectService(name, price) {
+            currentService = name;
+            currentPrice = price;
+
+            // Update UI styles for all cards
+            document.querySelectorAll('.svc-card').forEach(card => {
+                card.className = 'svc-card glass-panel cursor-pointer p-4 rounded-2xl flex justify-between items-center transition-all';
+                const tag = card.querySelector('.price-tag');
+                if(tag) tag.className = 'price-tag text-white font-extrabold text-lg';
+            });
+
+            // Highlight clicked card (event targets handled via inline context)
+            if (event && event.currentTarget) {
+                event.currentTarget.className = 'svc-card glass-active cursor-pointer p-4 rounded-2xl flex justify-between items-center transition-all';
+                const activeTag = event.currentTarget.querySelector('.price-tag');
+                if(activeTag) activeTag.className = 'price-tag text-rose-400 font-extrabold text-lg';
+            }
+
+            // Update Form Box
+            document.getElementById('selected-title').innerText = name;
             document.getElementById('total').innerText = '£' + price.toFixed(2);
             document.getElementById('deposit').innerText = '£' + (price * 0.25).toFixed(2);
         }
