@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Head Shed | Bespoke Hairdressing Stanley</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-panel {
+            background: rgba(24, 18, 23, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(244, 63, 94, 0.2);
+        }
+        .glass-active {
+            background: linear-gradient(135deg, rgba(159, 18, 57, 0.35) 0%, rgba(24, 18, 23, 0.9) 100%);
+            border: 1px solid rgba(244, 63, 94, 0.6);
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased min-h-screen pb-12">
+    <header class="sticky top-0 z-50 glass-panel border-b border-rose-950 px-4 py-3.5">
+        <div class="max-w-md mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-sm font-black tracking-wider text-rose-100">THE HEAD SHED</h1>
+                <p class="text-[10px] text-rose-400 font-bold uppercase tracking-widest">110 Front St, Stanley</p>
+            </div>
+            <a href="tel:01207290383" class="bg-rose-500/20 text-rose-300 text-xs px-3.5 py-2 rounded-xl font-bold border border-rose-500/40">
+                <i class="fa-solid fa-phone"></i> Call
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-md mx-auto px-4 mt-5 space-y-5">
+        <div class="glass-panel p-6 rounded-3xl text-center space-y-3 relative overflow-hidden">
+            <span class="bg-rose-500/10 text-rose-400 border border-rose-500/30 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                <i class="fa-solid fa-scissors"></i> Front Street Hair Studio
+            </span>
+            <h2 class="text-2xl font-black text-rose-100 uppercase tracking-tight">Style & Confidence,<br><span class="text-rose-400">Tailored To You.</span></h2>
+            <p class="text-xs text-slate-400">Select your styling service below to request an instant slot & deposit estimate.</p>
+        </div>
+
+        <div class="space-y-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Select Service</span>
+            
+            <div onclick="selectSvc('cut', 32)" id="svc-cut" class="glass-active cursor-pointer p-4 rounded-2xl flex justify-between items-center">
+                <div>
+                    <h3 class="font-bold text-white text-sm">Cut & Blow Dry</h3>
+                    <p class="text-xs text-slate-400">Precision cut, wash, head massage & professional finish.</p>
+                </div>
+                <span class="text-rose-400 font-extrabold text-lg">£32</span>
+            </div>
+
+            <div onclick="selectSvc('balayage', 75)" id="svc-balayage" class="glass-panel cursor-pointer p-4 rounded-2xl flex justify-between items-center">
+                <div>
+                    <h3 class="font-bold text-white text-sm">Bespoke Colour / Balayage</h3>
+                    <p class="text-xs text-slate-400">Custom shade blending, toner & full styling treatment.</p>
+                </div>
+                <span class="text-white font-extrabold text-lg">£75</span>
+            </div>
+        </div>
+
+        <div class="glass-panel p-5 rounded-3xl space-y-4 border-rose-500/30">
+            <div class="flex justify-between items-center pb-3 border-b border-slate-800">
+                <div>
+                    <p class="text-[11px] text-slate-400">Estimated Total</p>
+                    <p id="total" class="text-2xl font-black text-white">£32.00</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-[11px] text-rose-400 font-bold">Deposit Due (25%)</p>
+                    <p id="deposit" class="text-2xl font-black text-rose-400">£8.00</p>
+                </div>
+            </div>
+            <form onsubmit="event.preventDefault(); alert('Demo request submitted!');" class="space-y-2.5">
+                <input type="text" placeholder="Your Full Name" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-rose-500">
+                <input type="tel" placeholder="Mobile Number" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-white outline-none focus:border-rose-500">
+                <button type="submit" class="w-full bg-gradient-to-r from-rose-600 to-pink-600 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider shadow-lg shadow-rose-600/30">
+                    Reserve Appointment Slot
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        let currentPrice = 32;
+        function selectSvc(id, price) {
+            currentPrice = price;
+            document.querySelectorAll('[id^="svc-"]').forEach(el => {
+                el.className = 'glass-panel cursor-pointer p-4 rounded-2xl flex justify-between items-center';
+                el.querySelector('span').className = 'text-white font-extrabold text-lg';
+            });
+            const active = document.getElementById('svc-' + id);
+            active.className = 'glass-active cursor-pointer p-4 rounded-2xl flex justify-between items-center';
+            active.querySelector('span').className = 'text-rose-400 font-extrabold text-lg';
+            document.getElementById('total').innerText = '£' + price.toFixed(2);
+            document.getElementById('deposit').innerText = '£' + (price * 0.25).toFixed(2);
+        }
+    </script>
+</body>
+</html>
